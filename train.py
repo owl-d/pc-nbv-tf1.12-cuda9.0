@@ -12,6 +12,9 @@ from tensorpack import dataflow
 from scipy import stats
 import csv
 
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 
 def train(args):
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
@@ -139,24 +142,24 @@ def train(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--lmdb_train', default='data/train.lmdb')
-    parser.add_argument('--lmdb_valid', default='data/valid.lmdb')
-    parser.add_argument('--log_dir', default='log/7_11_1')
+    parser.add_argument('--lmdb_train', default='/media/owner/CoCEL/ShapeNetCore.v1/pcnbv_dataset_custom/lmdb/train.lmdb')
+    parser.add_argument('--lmdb_valid', default='/media/owner/CoCEL/ShapeNetCore.v1/pcnbv_dataset_custom/lmdb/valid.lmdb')
+    parser.add_argument('--log_dir', default='/home/owner/nbv_ws/nbv_project/benchmark/pcnbv/log_tensorflow')
     parser.add_argument('--model_type', default='pc-nbv')
-    parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--num_input_points', type=int, default=512)
-    parser.add_argument('--num_gt_points', type=int, default=1024)
+    parser.add_argument('--batch_size', type=int, default=4)
+    parser.add_argument('--num_input_points', type=int, default=1024)
+    parser.add_argument('--num_gt_points', type=int, default=5000)
     parser.add_argument('--views', type=int, default=33)
     parser.add_argument('--base_lr', type=float, default=0.0001)
     parser.add_argument('--lr_decay', action='store_true')
     parser.add_argument('--lr_decay_steps', type=int, default=50000)
     parser.add_argument('--lr_decay_rate', type=float, default=0.7)
     parser.add_argument('--lr_clip', type=float, default=1e-6)
-    parser.add_argument('--max_step', type=int, default=400000)
+    parser.add_argument('--max_step', type=int, default=4000000)
     parser.add_argument('--steps_per_print', type=int, default=100)
     parser.add_argument('--steps_per_eval', type=int, default=1000)
     parser.add_argument('--steps_per_save', type=int, default=5000)
-    parser.add_argument('--gpu', default='2')
+    parser.add_argument('--gpu', default='1')
 
     args = parser.parse_args()
 
