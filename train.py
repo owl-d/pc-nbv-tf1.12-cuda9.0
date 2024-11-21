@@ -12,10 +12,6 @@ from tensorpack import dataflow
 from scipy import stats
 import csv
 
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
-
-
 def train(args):
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
@@ -142,9 +138,9 @@ def train(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--lmdb_train', default='/media/owner/CoCEL/ShapeNetCore.v1/pcnbv_dataset_custom/lmdb/train.lmdb')
-    parser.add_argument('--lmdb_valid', default='/media/owner/CoCEL/ShapeNetCore.v1/pcnbv_dataset_custom/lmdb/valid.lmdb')
-    parser.add_argument('--log_dir', default='/home/owner/nbv_ws/nbv_project/benchmark/pcnbv/log_tensorflow')
+    parser.add_argument('--lmdb_train', default='/data/train.lmdb')
+    parser.add_argument('--lmdb_valid', default='/data/valid.lmdb')
+    parser.add_argument('--log_dir', default='/data/log_tensorflow')
     parser.add_argument('--model_type', default='pc-nbv')
     parser.add_argument('--batch_size', type=int, default=4)
     parser.add_argument('--num_input_points', type=int, default=1024)
